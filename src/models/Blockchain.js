@@ -8,7 +8,7 @@ class Blockchain {
   constructor() {
     /** @type {Block[]} */
     this.chain = [new Block(Date.now().toString())];
-    /** @type {string} */
+    /** @type {number} */
     this.difficulty = 1;
   }
 
@@ -24,7 +24,7 @@ class Blockchain {
     // Since now prevHash has a value, we must reset the block's hash
     block.hash = block.getHash();
 
-    block.mine(this.difficulty)
+    block.mine(this.difficulty);
 
     // Object.freeze ensures immutability in our code
     this.chain.push(Object.freeze(block));
