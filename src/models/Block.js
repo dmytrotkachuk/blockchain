@@ -5,21 +5,25 @@ const crypto = require('crypto'),
 
 class Block {
   /**
-   * @param { string | number} timestamp
+   * @param {string} timestamp
    * @param {any[]} data
    */
   constructor(timestamp = '', data = []) {
     this.timestamp = timestamp;
     // this.data should contain information like transactions.
     this.data = data;
-    this.hash = this.getHash()
+
+    /** @type {string} */
+    this.hash = this.getHash();
+    /** @type {string} */
     this.prevHash = ''; // previous block's hash
   }
 
   // Our hash function
-  getHash(){
-    return SHA256(this.prevHash + this.timestamp + JSON.stringify(this.data))
+  /** @returns {string} */
+  getHash() {
+    return SHA256(this.prevHash + this.timestamp + JSON.stringify(this.data));
   }
 }
 
-module.exports = new Block();
+module.exports = Block;
